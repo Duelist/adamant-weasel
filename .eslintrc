@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "semi": [2, "always"],
+    "quotes": [2, "single"],
+    "no-trailing-spaces": [2, { "skipBlankLines": false }],
+    "generator-star-spacing": [2, { "before": true, "after": true }]
+  },
+  "ecmaFeatures": {
+    "classes": true,
+    "generators": true
+  }
+}

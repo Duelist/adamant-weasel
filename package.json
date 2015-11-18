@@ -19,14 +19,17 @@
   "homepage": "https://github.com/duelist/adamant-weasel#readme",
   "dependencies": {
     "co-body": "^4.0.0",
+    "co-request": "^1.0.0",
     "eslint": "^0.24.0",
     "fs": "0.0.2",
+    "kafka-node": "^0.2.29",
     "koa": "^1.1.1",
     "koa-route": "^2.4.2",
     "mocha": "^2.3.3",
     "path": "^0.12.7",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
+    "request": "^2.66.0",
     "sequelize": "^3.13.0",
     "should": "^7.1.1"
   }
