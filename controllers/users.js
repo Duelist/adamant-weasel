@@ -60,6 +60,10 @@ module.exports.update = function * update(id) {
     return this.throw(404, 'User not found');
   }
 
+  if (!(body['name'] && body['password'])) {
+    return this.throw(400, 'Arguments cannot be empty.');
+  }
+
   // Updates the user with supplied arguments
   user = yield user.update({
     name: body['name'],

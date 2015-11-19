@@ -2,11 +2,7 @@
 
 var parse = require('co-body'),
     models = require('../models'),
-    kafka = require('kafka-node'),
-    Producer = kafka.Producer,
-    KeyedMessage = kafka.KeyedMessage,
-    client = new kafka.Client(),
-    producer = new Producer(client);
+    kafka = require('../private/kafka');
 
 /*
  * POST /log
@@ -32,7 +28,7 @@ module.exports.create = function * create() {
   }
 
   // Sends a message to the kafka server with supplied data
-  producer.send(payloads, function (err, data) {});
+  kafka.producer.send(payloads, function (err, data) {});
 
   this.body = 'Done!';
 };

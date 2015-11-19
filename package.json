@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "prestart": "sh scripts/init.sh",
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --harmony ./test/test*.js"
   },
   "repository": {
     "type": "git",
@@ -25,12 +26,13 @@
     "kafka-node": "^0.2.29",
     "koa": "^1.1.1",
     "koa-route": "^2.4.2",
-    "mocha": "^2.3.3",
+    "mocha": "^2.3.4",
     "path": "^0.12.7",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
     "request": "^2.66.0",
     "sequelize": "^3.13.0",
-    "should": "^7.1.1"
+    "should": "^7.1.1",
+    "supertest": "^1.1.0"
   }
 }
