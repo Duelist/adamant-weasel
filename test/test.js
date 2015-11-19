@@ -20,6 +20,16 @@ before(function (done) {
 });
 
 
+describe('404', function () {
+  it('Should respond with a 404 if the endpoint does not exist', function (done) {
+    request
+      .get('/log')
+      .expect(404)
+      .end(done);
+  });
+});
+
+
 describe('POST /log', function () {
   it('Should respond with a 200 while adding a log entry to logs/app.log', function (done) {
     request
@@ -90,6 +100,20 @@ describe('PUT /classes/user/:id', function () {
     request
       .put('/classes/user/1')
       .expect(400)
+      .send({})
+      .end(done);
+  });
+  it('Should respond with a 400 if an invalid id is provided', function (done) {
+    request
+      .put('/classes/user/asdf')
+      .expect(400)
+      .send({})
+      .end(done);
+  });
+  it('Should respond with a 404 if a user is not found', function (done) {
+    request
+      .put('/classes/user/999')
+      .expect(404)
       .send({})
       .end(done);
   });

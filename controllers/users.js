@@ -46,22 +46,26 @@ module.exports.create = function * create() {
  * Updates user name and password
  */
 module.exports.update = function * update(id) {
-  var body = yield parse(this);
+  var that = this,
+      body = yield parse(that);
 
   // Ensures a valid id was supplied
   if (!id) {
-    return this.throw(404);
+    return that.throw(404);
   }
 
-  var user = yield models.User.findById(id);
+  var user = yield models.User.findById(id).catch(function () {
+    return that.throw(400, 'Invalid id.');
+  });
 
   // Ensures a user was found
   if (!user) {
-    return this.throw(404, 'User not found');
+    return that.throw(404, 'User not found');
   }
 
+  // Ensure all arguments are supplied before moving on
   if (!(body.name && body.password)) {
-    return this.throw(400, 'Arguments cannot be empty.');
+    return that.throw(400, 'Arguments cannot be empty.');
   }
 
   // Updates the user with supplied arguments
@@ -82,5 +86,5 @@ module.exports.update = function * update(id) {
     }
   );
 
-  this.body = user;
+  that.body = user;
 };
