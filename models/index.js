@@ -2,9 +2,9 @@
 
 var fs = require('fs'),
     path = require('path'),
-    Sequelize = require('sequelize'),
-    basename = path.basename(module.filename),
-    env = 'development',
+    Sequelize = require('sequelize');
+
+var basename = path.basename(module.filename),
     db_url = 'postgres:///adamant-weasel',
     sequelize = new Sequelize(db_url, {
       dialect: 'postgres',
@@ -26,7 +26,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename);
   })
   .forEach(function(file) {
-    var model = sequelize['import'](path.join(__dirname, file));
+    var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 

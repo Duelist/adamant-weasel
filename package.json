@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "sh scripts/init.sh",
     "start": "node app.js",
-    "test": "./node_modules/.bin/mocha --harmony ./test/test*.js"
+    "test": "./node_modules/.bin/mocha --harmony ./test/test*.js",
+    "lint": "./node_modules/.bin/eslint -c .eslintrc *.js models/*.js controllers/*.js private/*.js"
   },
   "repository": {
     "type": "git",

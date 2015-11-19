@@ -2,8 +2,14 @@
   "rules": {
     "semi": [2, "always"],
     "quotes": [2, "single"],
+    "camelcase": 0,
+    "global-strict": [2, "always"],
     "no-trailing-spaces": [2, { "skipBlankLines": false }],
     "generator-star-spacing": [2, { "before": true, "after": true }]
+  },
+  "env": {
+    "node": true,
+    "es6": true
   },
   "ecmaFeatures": {
     "classes": true,

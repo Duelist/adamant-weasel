@@ -13,16 +13,16 @@ module.exports.create = function * create() {
       body = yield parse(that);
 
   // Ensure all arguments are supplied before moving on
-  if (!(body['name'] && body['password'] && body['email'])) {
+  if (!(body.name && body.password && body.email)) {
     return that.throw(400, 'Missing arguments.');
   }
 
   // Creates a user if model validation works out
   var user = yield models.User.create({
-        name: body['name'],
-        password: body['password'],
-        email: body['email']
-      }).catch(function (err) {
+        name: body.name,
+        password: body.password,
+        email: body.email
+      }).catch(function () {
         return that.throw(400, 'Invalid arguments.');
       });
 
@@ -32,7 +32,7 @@ module.exports.create = function * create() {
     {
       form: {
         action_id: 'USER_SIGNUP',
-        user_id: user['id'],
+        user_id: user.id,
         data: JSON.stringify(body)
       }
     }
@@ -60,14 +60,14 @@ module.exports.update = function * update(id) {
     return this.throw(404, 'User not found');
   }
 
-  if (!(body['name'] && body['password'])) {
+  if (!(body.name && body.password)) {
     return this.throw(400, 'Arguments cannot be empty.');
   }
 
   // Updates the user with supplied arguments
   user = yield user.update({
-    name: body['name'],
-    password: body['password']
+    name: body.name,
+    password: body.password
   });
 
   // Send a log request
@@ -76,7 +76,7 @@ module.exports.update = function * update(id) {
     {
       form: {
         action_id: 'USER_EDIT_PROFILE',
-        user_id: user['id'],
+        user_id: user.id,
         data: JSON.stringify(body)
       }
     }

@@ -1,12 +1,11 @@
 'use strict';
 
-var fs = require('fs'),
-    koa = require('koa'),
+var koa = require('koa'),
     route = require('koa-route'),
-    models = require('./models'),
     logs = require('./controllers/logs'),
-    users = require('./controllers/users'),
-    app = koa();
+    users = require('./controllers/users');
+
+var app = koa();
 
 // Routes
 app.use(route.post('/log', logs.create));
