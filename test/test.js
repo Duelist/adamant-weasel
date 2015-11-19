@@ -1,18 +1,21 @@
-var should = require('should'),
-    app = require('../app.js'),
-    models = require('../models'),
-    request = require('supertest')(app.listen(3000));
+'use strict';
 
+require('should');
+
+var app = require('../app.js'),
+    models = require('../models');
+
+var request = require('supertest')(app.listen(3000));
 
 before(function (done) {
   models.sequelize.sync({ force: true }).then(function () {
     models.User.create({
-      name: 'Ian',
+      name: 'Mr. Test',
       password: 'testpass',
-      email: 'ianbenedict@gmail.com'
-    }).then(function () {
-      done();
+      email: 'testuser@test.com'
     });
+  }).then(function () {
+    done();
   });
 });
 
@@ -44,11 +47,16 @@ describe('POST /classes/user', function () {
     request
       .post('/classes/user')
       .send({
-        'name': 'Mr. Test',
-        'password': 'testpass',
-        'email': 'testemail@testemail.com'
+        'name': 'Mr. NewTest',
+        'password': 'newtestpass',
+        'email': 'newtestuser@test.com'
       })
       .expect(200)
+      .expect(function (res) {
+        res.body.name.should.equal('Mr. NewTest');
+        res.body.password.should.equal('newtestpass');
+        res.body.email.should.equal('newtestuser@test.com');
+      })
       .end(done);
   });
   it('Should respond with a 400 if incorrect arguments are given', function (done) {
@@ -67,9 +75,15 @@ describe('PUT /classes/user/:id', function () {
       .put('/classes/user/1')
       .send({
         'name': 'Mr. Test',
-        'password': 'testpass'
+        'password': 'testpass',
+        'email': 'newtestuser@test.com'
       })
       .expect(200)
+      .expect(function (res) {
+        res.body.name.should.equal('Mr. Test');
+        res.body.password.should.equal('testpass');
+        res.body.email.should.equal('testuser@test.com');
+      })
       .end(done);
   });
   it('Should respond with a 400 if incorrect arguments are given', function (done) {
