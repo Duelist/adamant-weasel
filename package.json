@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "postinstall": "sh scripts/install.sh",
     "prestart": "sh scripts/init.sh",
     "start": "node app.js",
     "test": "./node_modules/.bin/mocha --harmony ./test/test*.js",
