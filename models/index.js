@@ -1,5 +1,7 @@
 'use strict';
 
+// https://github.com/sequelize/express-example/blob/master/models/index.js
+
 var fs = require('fs'),
     path = require('path'),
     Sequelize = require('sequelize');
