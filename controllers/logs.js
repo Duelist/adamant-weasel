@@ -16,8 +16,7 @@ module.exports.create = function * create() {
             body.action_id,
             body.user_id,
             body.data
-          ].join(','),
-          parition: 0
+          ].join(',')
         }
       ];
 
